@@ -71,9 +71,23 @@ export function decorateMain(main) {
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
+
+export function getHref() {
+  if (window.location.href !== 'about:srcdoc') return window.location.href;
+  const { location: parentLocation } = window.parent;
+  const urlParams = new URLSearchParams(parentLocation.search);
+  return `${parentLocation.origin}${urlParams.get('path')}`;
+}
+
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  const path = getHref();
+
+  if (path.includes('/ar/')) {
+    document.documentElement.lang = 'ar';
+    document.documentElement.dir = 'rtl';
+  }
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
