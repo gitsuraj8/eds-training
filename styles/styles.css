@@ -255,3 +255,16 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+.cards.cards-en.block {
+    color: green;
+}
+
+.cards.cards-ar.block {
+    color: red;
+}
+
+h2#cards-en {
+    color: green;
+}
+
